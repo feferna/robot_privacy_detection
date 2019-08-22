@@ -1,5 +1,3 @@
-# Oklahoma State University
-
 ## ROS Package for the Privacy Sensitive Detection on Social Robots.  
 
 Author: Francisco Erivaldo Fernandes Junior  

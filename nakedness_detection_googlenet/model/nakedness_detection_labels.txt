@@ -1,0 +1,3 @@
+0	no person
+1	full clothes
+2	half naked

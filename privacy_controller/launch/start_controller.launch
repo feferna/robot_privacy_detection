@@ -1,0 +1,18 @@
+<launch>
+
+  <machine name="ascc-pc-035" address="192.168.1.124" env-loader="/opt/ros/kinetic/env.sh" user="francisco" default="true"/>
+
+  <machine name="ascc-i7-nuc" address="192.168.1.117" env-loader="/home/ascc/catkin_ws/devel/env.sh" user="ascc" default="false"/>
+  
+  <node machine="ascc-i7-nuc" pkg="sound_play" type="soundplay_node.py" name="soundplay"/>
+
+  <node machine="ascc-i7-nuc" pkg="robot_talks" type="robot_talks.py" name="robot_talks"/>
+
+  <node machine="ascc-i7-nuc" name="recognizer" pkg="pocketsphinx" type="recognizer.py" output="log">
+    <param name="lm" value="/home/ascc/catkin_ws/src/robot_privacy_detection/privacy_controller/pocketsphinx_config/ascc_cmd.lm"/>
+    <param name="dict" value="/home/ascc/catkin_ws/src/robot_privacy_detection/privacy_controller/pocketsphinx_config/ascc_cmd.dic"/>
+  </node>
+	
+  <node machine="ascc-pc-035" pkg="privacy_controller" type="robot_controller_testing.py" name="robot_privacy_controller" output="screen"/>
+
+</launch>

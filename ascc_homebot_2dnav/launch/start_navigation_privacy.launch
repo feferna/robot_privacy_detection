@@ -1,0 +1,32 @@
+<launch>
+
+  <machine name="ascc-pc-035" address="192.168.1.124" env-loader="/opt/ros/indigo/env.sh" user="francisco" default="true" />
+
+  <machine name="ascc-i7-nuc" address="192.168.1.117" env-loader="/home/ascc/catkin_ws/devel/env.sh" user="ascc" default="false"/>
+  
+  <node machine="ascc-i7-nuc" pkg="hokuyo_node" type="hokuyo_node" name="LRF"/>
+
+  <node machine="ascc-i7-nuc" pkg="rosaria" type="RosAria" name="RosAria"/>
+
+  <node machine="ascc-i7-nuc" pkg="tf_pioneer" type="tf_pioneer" name="TF"/>
+
+  <node machine="ascc-pc-035" pkg="pir_location_receiver" type="PIR_receiver.py" name="PIR_receiver"/>
+
+  <node machine="ascc-pc-035" name="map_server" pkg="map_server" type="map_server" args="$(find ascc_homebot_2dnav)/maps/testbed_mod.yaml"/>
+
+  <include file="$(find ascc_homebot_2dnav)/launch/amcl_diff.launch"/>
+	
+  <node machine="ascc-pc-035" pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+
+    <remap from="cmd_vel" to="/RosAria/cmd_vel"/>
+    <rosparam command="load" file="$(find ascc_homebot_2dnav)/costmap_common_params.yaml"  ns="global_costmap" />
+    <rosparam command="load" file="$(find ascc_homebot_2dnav)/costmap_common_params.yaml"  ns="local_costmap" />
+    <rosparam command="load" file="$(find ascc_homebot_2dnav)/local_costmap_params.yaml" />
+    <rosparam command="load" file="$(find ascc_homebot_2dnav)/global_costmap_params.yaml" />
+    <rosparam command="load" file="$(find ascc_homebot_2dnav)/base_local_planner_params.yaml" />	
+
+  </node>
+
+  <node machine="ascc-pc-035" pkg="ascc_homebot_2dnav" type="publish_initial_pose.py" name="publish_initial_pose"/>
+
+</launch>

@@ -1,0 +1,13 @@
+<launch>
+
+  <!--node pkg="sound_play" type="soundplay_node.py" name="Speaker"/-->
+
+  <node pkg="hokuyo_node" type="hokuyo_node" name="LRF"/>
+
+  <node pkg="rosaria" type="RosAria" name="RosAria"/>
+
+  <node pkg="tf_pioneer" type="tf_pioneer" name="TF"/>
+
+  <!--node pkg="obstacle_sonar" type="pr_obstacle_sonar" name="Obs"/-->
+
+</launch>

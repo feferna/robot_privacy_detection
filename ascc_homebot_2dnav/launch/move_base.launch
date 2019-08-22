@@ -1,0 +1,18 @@
+<launch>
+  <master auto="start" />
+
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find ascc_homebot_2dnav)/maps/testbed_mod.yaml"/>
+
+  <include file="$(find ascc_homebot_2dnav)/launch/amcl_diff.launch"/>
+	
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <remap from="cmd_vel" to="/RosAria/cmd_vel"/>	
+    <rosparam command="load" file="$(find ascc_homebot_2dnav)/costmap_common_params.yaml"  ns="global_costmap" />
+    <rosparam command="load" file="$(find ascc_homebot_2dnav)/costmap_common_params.yaml"  ns="local_costmap" />
+    <rosparam command="load" file="$(find ascc_homebot_2dnav)/local_costmap_params.yaml" />
+    <rosparam command="load" file="$(find ascc_homebot_2dnav)/global_costmap_params.yaml" />
+    <rosparam command="load" file="$(find ascc_homebot_2dnav)/base_local_planner_params.yaml" />	
+
+  </node>
+	
+</launch>

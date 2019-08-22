@@ -6,6 +6,7 @@ This code is related to the following conference paper:
 
 F. E. Fernandes, Guanci Yang, H. M. Do, and W. Sheng, “Detection of privacy-sensitive situations for social robots in smart homes,” in 2016 IEEE International Conference on Automation Science and Engineering (CASE), Fort Worth, TX, USA, 2016, pp. 727–732.
 
+```
 @inproceedings{fernandes_detection_2016,
 	address = {Fort Worth, TX, USA},
 	title = {Detection of privacy-sensitive situations for social robots in smart homes},
@@ -20,6 +21,7 @@ F. E. Fernandes, Guanci Yang, H. M. Do, and W. Sheng, “Detection of privacy-se
 	year = {2016},
 	pages = {727--732}
 }
+```
 
 ## Packages:  
 - Nakedness detection using Inception on Tensorflow running on GPU.  
